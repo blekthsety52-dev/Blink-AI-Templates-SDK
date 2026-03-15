@@ -105,11 +105,11 @@ export default function App() {
       <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
       {/* Nav */}
-      <nav className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+      <nav className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md" role="navigation" aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-emerald-500 rounded flex items-center justify-center">
-              <Zap className="w-5 h-5 text-zinc-950 fill-current" />
+              <Zap className="w-5 h-5 text-zinc-950 fill-current" aria-hidden="true" />
             </div>
             <span className="font-bold tracking-tight text-lg">BLINK SDK</span>
           </div>
@@ -120,7 +120,7 @@ export default function App() {
             <a href="#" className="hover:text-emerald-400 transition-colors">Pricing</a>
           </div>
           <div className="flex items-center gap-4">
-            <button className="p-2 text-zinc-400 hover:text-white transition-colors">
+            <button className="p-2 text-zinc-400 hover:text-white transition-colors" aria-label="View on GitHub">
               <Github className="w-5 h-5" />
             </button>
             <button className="bg-emerald-500 hover:bg-emerald-400 text-zinc-950 px-4 py-1.5 rounded-md text-sm font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)]">
@@ -130,9 +130,9 @@ export default function App() {
         </div>
       </nav>
 
-      <main>
+      <main id="main" role="main" aria-label="Template discovery">
         {/* Hero Section */}
-        <section className="relative pt-24 pb-32 px-4">
+        <section className="relative pt-24 pb-32 px-4" aria-labelledby="hero-heading">
           <div className="max-w-7xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -140,7 +140,7 @@ export default function App() {
               transition={{ duration: 0.5 }}
             >
               <Badge className="text-emerald-400 mb-6">v2.4.0 Available Now</Badge>
-              <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
+              <h1 id="hero-heading" className="text-5xl md:text-8xl font-black tracking-tighter mb-8 bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
                 PREMIUM AI TEMPLATES<br />
                 <span className="text-emerald-500">PROGRAMMATICALLY</span>
               </h1>
@@ -149,10 +149,10 @@ export default function App() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <button className="w-full sm:w-auto bg-white text-zinc-950 px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:bg-zinc-200 transition-all group">
-                  Start Building <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Start Building <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </button>
                 <button className="w-full sm:w-auto bg-zinc-900 border border-zinc-800 text-white px-8 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:bg-zinc-800 transition-all">
-                  <Terminal className="w-5 h-5" /> npm i @blink/core
+                  <Terminal className="w-5 h-5" aria-hidden="true" /> npm i @blink/core
                 </button>
               </div>
             </motion.div>
@@ -160,46 +160,48 @@ export default function App() {
         </section>
 
         {/* Features Grid */}
-        <section className="py-24 border-y border-zinc-800 bg-zinc-900/30">
+        <section className="py-24 border-y border-zinc-800 bg-zinc-900/30" aria-labelledby="features-heading">
           <div className="max-w-7xl mx-auto px-4">
+            <h2 id="features-heading" className="sr-only">Key Features</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
               {FEATURES.map((feature, idx) => (
-                <motion.div
+                <motion.article
                   key={feature.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.1 }}
                   viewport={{ once: true }}
                   className="group"
+                  aria-labelledby={`feature-title-${feature.id}`}
                 >
-                  <div className="text-xs font-mono text-zinc-600 mb-4">{feature.id}</div>
+                  <div className="text-xs font-mono text-zinc-600 mb-4" aria-hidden="true">{feature.id}</div>
                   <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/5 transition-all">
-                    <feature.icon className="w-6 h-6 text-emerald-500" />
+                    <feature.icon className="w-6 h-6 text-emerald-500" aria-hidden="true" />
                   </div>
-                  <h3 className="text-lg font-bold mb-3 group-hover:text-emerald-400 transition-colors">{feature.title}</h3>
+                  <h3 id={`feature-title-${feature.id}`} className="text-lg font-bold mb-3 group-hover:text-emerald-400 transition-colors">{feature.title}</h3>
                   <p className="text-zinc-500 text-sm leading-relaxed">{feature.description}</p>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
           </div>
         </section>
 
         {/* Performance Stats */}
-        <section className="py-24 px-4 overflow-hidden">
+        <section className="py-24 px-4 overflow-hidden" aria-labelledby="performance-heading">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl font-bold mb-8 tracking-tight">Built for <span className="italic serif">Extreme</span> Performance</h2>
+                <h2 id="performance-heading" className="text-4xl font-bold mb-8 tracking-tight">Built for <span className="italic serif">Extreme</span> Performance</h2>
                 <div className="space-y-8">
                   <div className="flex gap-6">
-                    <div className="text-5xl font-mono font-light text-emerald-500">&lt;50ms</div>
+                    <div className="text-5xl font-mono font-light text-emerald-500" aria-label="Less than 50 milliseconds">&lt;50ms</div>
                     <div>
                       <h4 className="font-bold mb-1">Metadata Resolution</h4>
                       <p className="text-zinc-500 text-sm">Lightning fast template discovery even with thousands of options.</p>
                     </div>
                   </div>
                   <div className="flex gap-6">
-                    <div className="text-5xl font-mono font-light text-emerald-500">&lt;50KB</div>
+                    <div className="text-5xl font-mono font-light text-emerald-500" aria-label="Less than 50 kilobytes">&lt;50KB</div>
                     <div>
                       <h4 className="font-bold mb-1">Core Footprint</h4>
                       <p className="text-zinc-500 text-sm">Minimal gzipped size for rapid installation and execution.</p>
@@ -223,26 +225,26 @@ export default function App() {
                     <div className="w-3 h-3 rounded-full bg-green-500" />
                     <span className="ml-2 text-xs font-mono text-zinc-500">performance_audit.sh</span>
                   </div>
-                  <div className="space-y-4 font-mono text-sm">
+                  <div className="space-y-4 font-mono text-sm" role="status" aria-label="Performance audit results">
                     <div className="flex justify-between text-zinc-400">
                       <span>Template Registry Sync</span>
                       <span className="text-emerald-400">12ms</span>
                     </div>
-                    <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden" aria-hidden="true">
                       <div className="bg-emerald-500 h-full w-[12%]" />
                     </div>
                     <div className="flex justify-between text-zinc-400">
                       <span>AST Transformation</span>
                       <span className="text-emerald-400">28ms</span>
                     </div>
-                    <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden" aria-hidden="true">
                       <div className="bg-emerald-500 h-full w-[28%]" />
                     </div>
                     <div className="flex justify-between text-zinc-400">
                       <span>Deployment Hook Init</span>
                       <span className="text-emerald-400">8ms</span>
                     </div>
-                    <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden" aria-hidden="true">
                       <div className="bg-emerald-500 h-full w-[8%]" />
                     </div>
                   </div>
@@ -253,18 +255,22 @@ export default function App() {
         </section>
 
         {/* Code Showcase */}
-        <section className="py-24 bg-zinc-900/20 border-t border-zinc-800">
+        <section className="py-24 bg-zinc-900/20 border-t border-zinc-800" aria-labelledby="showcase-heading">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 tracking-tight">Developer Experience First</h2>
+              <h2 id="showcase-heading" className="text-4xl font-bold mb-4 tracking-tight">Developer Experience First</h2>
               <p className="text-zinc-500">Intuitive APIs designed for rapid integration and type-safe customization.</p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-1 space-y-2">
+              <div className="lg:col-span-1 space-y-2" role="tablist" aria-label="Code examples">
                 {SNIPPETS.map((snippet, idx) => (
                   <button
                     key={idx}
+                    role="tab"
+                    aria-selected={activeSnippet === idx}
+                    aria-controls={`panel-${idx}`}
+                    id={`tab-${idx}`}
                     onClick={() => setActiveSnippet(idx)}
                     className={cn(
                       "w-full text-left px-6 py-4 rounded-xl transition-all border",
@@ -277,7 +283,7 @@ export default function App() {
                       <div className={cn(
                         "w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold",
                         activeSnippet === idx ? "bg-emerald-500 text-zinc-950" : "bg-zinc-800 text-zinc-500"
-                      )}>
+                      )} aria-hidden="true">
                         {idx + 1}
                       </div>
                       <span className="font-bold">{snippet.title}</span>
@@ -288,6 +294,9 @@ export default function App() {
               <div className="lg:col-span-2">
                 <motion.div
                   key={activeSnippet}
+                  role="tabpanel"
+                  id={`panel-${activeSnippet}`}
+                  aria-labelledby={`tab-${activeSnippet}`}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -303,48 +312,48 @@ export default function App() {
         </section>
 
         {/* Architecture Section */}
-        <section className="py-24 px-4">
+        <section className="py-24 px-4" aria-labelledby="architecture-heading">
           <div className="max-w-7xl mx-auto">
             <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-12 relative overflow-hidden">
               <div className="absolute top-0 right-0 p-8 opacity-10">
-                <Layers className="w-64 h-64" />
+                <Layers className="w-64 h-64" aria-hidden="true" />
               </div>
               <div className="relative z-10">
-                <h2 className="text-3xl font-bold mb-12">Modular Architecture</h2>
+                <h2 id="architecture-heading" className="text-3xl font-bold mb-12">Modular Architecture</h2>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div className="p-6 bg-zinc-950 border border-zinc-800 rounded-2xl">
+                  <article className="p-6 bg-zinc-950 border border-zinc-800 rounded-2xl">
                     <h4 className="font-bold text-emerald-500 mb-2">BlinkClient</h4>
                     <p className="text-xs text-zinc-500">Primary facade for all SDK operations.</p>
-                  </div>
-                  <div className="flex items-center justify-center">
+                  </article>
+                  <div className="flex items-center justify-center" aria-hidden="true">
                     <ChevronRight className="w-6 h-6 text-zinc-700 hidden md:block" />
                   </div>
-                  <div className="p-6 bg-zinc-950 border border-zinc-800 rounded-2xl">
+                  <article className="p-6 bg-zinc-950 border border-zinc-800 rounded-2xl">
                     <h4 className="font-bold text-emerald-500 mb-2">CustomizationEngine</h4>
                     <p className="text-xs text-zinc-500">AST-level template modification engine.</p>
-                  </div>
-                  <div className="p-6 bg-zinc-950 border border-zinc-800 rounded-2xl">
+                  </article>
+                  <article className="p-6 bg-zinc-950 border border-zinc-800 rounded-2xl">
                     <h4 className="font-bold text-emerald-500 mb-2">DeploymentAdapter</h4>
                     <p className="text-xs text-zinc-500">Pluggable hooks for Vercel, Expo, etc.</p>
-                  </div>
+                  </article>
                 </div>
                 <div className="mt-12 pt-12 border-t border-zinc-800 grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="flex gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
                     <div>
                       <h5 className="font-bold text-sm mb-1">Pluggable Adapters</h5>
                       <p className="text-xs text-zinc-500">Easily extend the SDK to support any deployment target.</p>
                     </div>
                   </div>
                   <div className="flex gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
                     <div>
                       <h5 className="font-bold text-sm mb-1">AST Transformations</h5>
                       <p className="text-xs text-zinc-500">Deep template modification without breaking code structure.</p>
                     </div>
                   </div>
                   <div className="flex gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
                     <div>
                       <h5 className="font-bold text-sm mb-1">Registry Sync</h5>
                       <p className="text-xs text-zinc-500">Always-up-to-date template metadata from the Blink cloud.</p>
@@ -357,9 +366,9 @@ export default function App() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-32 px-4 text-center">
+        <section className="py-32 px-4 text-center" aria-labelledby="cta-heading">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Ready to build the future of AI apps?</h2>
+            <h2 id="cta-heading" className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Ready to build the future of AI apps?</h2>
             <p className="text-zinc-400 text-lg mb-12">Join 5,000+ developers building premium experiences with the Blink AI Templates SDK.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button className="w-full sm:w-auto bg-emerald-500 text-zinc-950 px-10 py-4 rounded-xl font-bold text-lg hover:bg-emerald-400 transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)]">
@@ -374,18 +383,18 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-800 py-12 px-4">
+      <footer className="border-t border-zinc-800 py-12 px-4" role="contentinfo">
         <div className="max-w-7xl mx-auto flex flex-col md:row items-center justify-between gap-8">
           <div className="flex items-center gap-2">
-            <Zap className="w-5 h-5 text-emerald-500 fill-current" />
+            <Zap className="w-5 h-5 text-emerald-500 fill-current" aria-hidden="true" />
             <span className="font-bold tracking-tight">BLINK SDK</span>
           </div>
-          <div className="flex gap-8 text-sm text-zinc-500">
+          <nav className="flex gap-8 text-sm text-zinc-500" aria-label="Footer navigation">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
             <a href="#" className="hover:text-white transition-colors">Terms</a>
             <a href="#" className="hover:text-white transition-colors">Status</a>
             <a href="#" className="hover:text-white transition-colors">Contact</a>
-          </div>
+          </nav>
           <div className="text-sm text-zinc-600 font-mono">
             &copy; 2026 BLINK AI TECHNOLOGIES. ALL RIGHTS RESERVED.
           </div>

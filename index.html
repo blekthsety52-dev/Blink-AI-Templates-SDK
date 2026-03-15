@@ -3,11 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
+
+    <!-- Primary SEO -->
+    <title>Blink AI — Premium Website & App Templates</title>
+    <meta name="description" content="Discover, customize, and deploy AI-generated website and mobile app templates in seconds. Powered by Gemini AI." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trae9dbfagzk.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trae9dbfagzk.vercel.app/" />
+    <meta property="og:title" content="Blink AI — Premium Website & App Templates" />
+    <meta property="og:description" content="Discover, customize, and deploy AI-generated website and mobile app templates in seconds." />
+    <meta property="og:image" content="https://trae9dbfagzk.vercel.app/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Blink AI — Premium Website & App Templates" />
+    <meta name="twitter:description" content="Discover, customize, and deploy AI-generated website and mobile app templates in seconds." />
+    <meta name="twitter:image" content="https://trae9dbfagzk.vercel.app/og-image.png" />
+
+    <!-- PWA / App -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0f0f0f" />
   </head>
   <body>
+    <!-- Skip navigation for keyboard/screen reader users -->
+    <a 
+      href="#main" 
+      style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden" 
+      onfocus="this.style.cssText='position:fixed;top:8px;left:8px;z-index:9999;padding:8px 16px;background:#fff;border:2px solid #000;border-radius:4px;width:auto;height:auto'" 
+      onblur="this.style.cssText='position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden'" 
+    >
+      Skip to main content
+    </a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
